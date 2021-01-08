@@ -1,0 +1,1 @@
+Eksperyment mający na celu wygenerowanie tęczowych tablic, a następnie złamanie przy ich pomocy hashy

@@ -1,0 +1,16 @@
+{
+  "name": "teczowe-tablice",
+  "version": "1.0.0",
+  "description": "doswiadczenie majace na celu wygenerowanie teczowych tablic i zlamanie przy ich pomocy hashy md5",
+  "main": "index.js",
+  "repository": "https://github.com/kkarol012/rainbow-table-experiment.git",
+  "author": "Karol Krupinski",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "md5": "^2.3.0"
+  }
+}
