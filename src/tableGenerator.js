@@ -1,24 +1,22 @@
 const md5 = require("md5");
-const chainsCount = 2972;
-const chainLength = 10;
+const { Reducer } = require("./Reducer");
+const chainsCount = 3685;
+const chainLength = 8;
 
-function reduceFunction(acu, value) {
-  if (acu.length === 4) {
-    return acu;
-  }
-  const parsedNum = parseInt(value);
-  if (Number.isInteger(parsedNum)) {
-    acu.push(parsedNum);
-  }
-  return acu;
+function getReduceFunction(i) {
+  const reducer = new Reducer();
+  reducer.isReversed = i % 2 === 1;
+  reducer.getFromEnd = i >= 2 && i <= 5;
+  reducer.isSplitGet = i >= 4;
+  return reducer.generateFunction();
 }
 
 function generateChain(pass) {
   let reduced = pass;
   for (let i = 0; i < chainLength; i++) {
     const hash = md5(reduced);
-    const hashArray = hash.split("");
-    reduced = hashArray.reduce(reduceFunction, []).join("");
+    let hashArray = hash.split("");
+    reduced = getReduceFunction(i)(hashArray);
   }
   return reduced;
 }
@@ -34,4 +32,4 @@ function tableGenerator(init) {
   return chains;
 }
 
-module.exports = { tableGenerator };
+module.exports = { tableGenerator, getReduceFunction, chainLength };
